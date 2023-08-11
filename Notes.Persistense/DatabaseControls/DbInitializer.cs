@@ -6,6 +6,5 @@ namespace Notes.Persistense.DatabaseControls
     {
         public static void Initialize(NotesDbContext context) => 
             context.Database.EnsureCreated();
-
     }
 }
