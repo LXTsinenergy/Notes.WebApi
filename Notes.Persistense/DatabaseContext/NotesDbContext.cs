@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Notes.Application.Interfaces;
 using Notes.Domain;
 using Notes.Persistense.EntityTypeConfigurations;
 

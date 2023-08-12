@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using Notes.Application.Common.Exceptions;
+using Notes.Application.Interfaces;
 using Notes.Domain;
-using Notes.Persistense.DatabaseContext;
 
 namespace Notes.Application.Notes.Commands.UpdateNote
 {

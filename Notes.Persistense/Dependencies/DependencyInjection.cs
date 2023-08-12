@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Notes.Application.Interfaces;
 using Notes.Persistense.DatabaseContext;
 
 namespace Notes.Persistense.Dependencies

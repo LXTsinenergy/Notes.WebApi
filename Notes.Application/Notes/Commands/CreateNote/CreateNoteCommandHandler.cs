@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using Notes.Application.Interfaces;
 using Notes.Domain;
-using Notes.Persistense.DatabaseContext;
 
 namespace Notes.Application.Notes.Commands.CreateNote
 {

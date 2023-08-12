@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Notes.Persistense.DatabaseContext;
+using Notes.Application.Interfaces;
 
 namespace Notes.Application.Notes.Queries.GetNoteList
 {
@@ -24,7 +24,7 @@ namespace Notes.Application.Notes.Queries.GetNoteList
                 .Where(note => note.UserId == request.UserId)
                 .ProjectTo<NoteLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-
+            
             return new NoteListVm { Notes = notesQuery };
         }
     }
