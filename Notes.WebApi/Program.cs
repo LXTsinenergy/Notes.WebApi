@@ -30,6 +30,14 @@ builder.Services.AddAutoMapper(config =>
 builder.Services.AddAplication();
 builder.Services.AddPersistence(app.Configuration);
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowAnyOrigin();
+    });
+});
 
 app.Run();
