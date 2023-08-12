@@ -12,5 +12,6 @@ namespace Notes.Application.Notes.Commands.UpdateNote
                 updateNoteCommand.Id).NotEqual(Guid.Empty);
             RuleFor(updateNoteCommand =>
                 updateNoteCommand.Title).NotEmpty().MaximumLength(250);
+        }
     }
 }
