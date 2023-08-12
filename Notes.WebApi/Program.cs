@@ -8,8 +8,6 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;
@@ -39,5 +37,11 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin();
     });
 });
+
+app.UseRouting();
+app.UseHttpsRedirection();
+app.UseCors("AllowAll");
+
+app.MapControllers();
 
 app.Run();
