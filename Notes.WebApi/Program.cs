@@ -6,29 +6,16 @@ using Notes.Persistense.Dependencies;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var serviceProvider = scope.ServiceProvider;
-    try
-    {
-        var context = serviceProvider.GetRequiredService<NotesDbContext>();
-        DbInitializer.Initialize(context);
-    }
-    catch (Exception ex) { }
-}
-
+// Add services to the container.
+builder.Services.AddApplication();
+builder.Services.AddControllers();
+builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddAutoMapper(config =>
 {
-    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+    config.AddProfile(new AssemblyMappingProfile(typeof(Program).Assembly));
     config.AddProfile(new AssemblyMappingProfile(typeof(INotesDbContext).Assembly));
 });
-
-builder.Services.AddAplication();
-builder.Services.AddPersistence(app.Configuration);
-builder.Services.AddControllers();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -39,10 +26,25 @@ builder.Services.AddCors(options =>
     });
 });
 
-app.UseRouting();
-app.UseHttpsRedirection();
-app.UseCors("AllowAll");
+builder.Services.AddEndpointsApiExplorer();
 
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var context = scope.ServiceProvider.GetRequiredService<NotesDbContext>();
+        DbInitializer.Initialize(context);
+    }
+    catch (Exception)
+    {
+    }
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.UseCors("AllowAll");
 app.MapControllers();
 
 app.Run();
