@@ -13,7 +13,7 @@ namespace Notes.Tests.Common
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            NotesContextFactory.Destroy(Context);
         }
     }
 }
