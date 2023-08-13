@@ -4,6 +4,7 @@ using Notes.Application.Interfaces;
 using Notes.Persistense.DatabaseContext;
 using Notes.Persistense.DatabaseControls;
 using Notes.Persistense.Dependencies;
+using Notes.WebApi.Middleware;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,6 +44,7 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+app.UseCustomExceptionHandler();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors("AllowAll");
