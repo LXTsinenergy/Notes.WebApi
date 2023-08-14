@@ -6,6 +6,7 @@ using Shouldly;
 
 namespace Notes.Tests.Notes.Queries
 {
+    [Collection("QueryCollection")]
     public class GetNoteListQueryHandlerTests : TestCommandBase
     {
         private readonly NotesDbContext Context;
